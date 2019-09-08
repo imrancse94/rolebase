@@ -1,7 +1,7 @@
 import React, { Component, Suspense } from "react";
 import * as router from "react-router-dom";
 import { Container } from "reactstrap";
-
+import { connect } from "react-redux";
 import {
   AppAside,
   AppFooter,
@@ -18,24 +18,25 @@ import {
 import navigation from "../../_nav";
 // routes config
 import routes from "../../routes";
+import cookie from "js-cookie";
 
 const DefaultAside = React.lazy(() => import("./DefaultAside"));
 const DefaultFooter = React.lazy(() => import("./DefaultFooter"));
 const DefaultHeader = React.lazy(() => import("./DefaultHeader"));
 
 class DefaultLayout extends Component {
+
   loading = () => (
     <div className="animated fadeIn pt-1 text-center">Loading...</div>
   );
 
   signOut(e) {
     e.preventDefault();
-    this.props.history.push("/login");
+    cookie.remove("token");
+    this.props.logout();
   }
 
   render() {
-    console.log('props',this.props);
-    
     return (
       <div className="app">
         <AppHeader fixed>
@@ -81,4 +82,18 @@ class DefaultLayout extends Component {
   }
 }
 
-export default DefaultLayout;
+const mapStateToProps = state => {
+  return {
+    loggedIn: state.auth.loggedIn
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    logout: () => dispatch({ type: "SET_LOGOUT" })
+  };
+};
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(DefaultLayout);

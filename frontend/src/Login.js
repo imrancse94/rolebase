@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import cookie from "js-cookie";
 import { connect } from "react-redux";
-import Error from "./components/Error";
+import Error from "./routes/Error";
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -11,13 +11,13 @@ class Login extends Component {
   handleForm = e => {
     e.preventDefault();
     const data = { email: this.state.email, password: this.state.password };
-
+    alert('dddddd');
     axios
       .post("http://localhost:8000/api/auth/login", data)
       .then(res => {
         cookie.set("token", res.data.access_token);
         this.props.setLogin(res.data.user);
-        this.props.history.push("/profile");
+        this.props.history.push("/dashboard");
       })
       .catch(e => this.setState({ errors: e.response.data.errors }));
   };

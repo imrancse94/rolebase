@@ -15,7 +15,7 @@ import {
   InputGroupText,
   Row
 } from "reactstrap";
-import axios from "axios";
+import Http from '../../../Http';
 import cookie from "js-cookie";
 
 class Login extends Component {
@@ -28,8 +28,8 @@ class Login extends Component {
     e.preventDefault();
     const data = { email: this.state.email, password: this.state.password };
     console.log('this.props', this.props);
-    
-    axios
+
+    Http
       .post("http://localhost:8000/api/auth/login", data)
       .then(res => {
         cookie.set("token", res.data.access_token);
@@ -45,6 +45,8 @@ class Login extends Component {
     const value = e.target.value;
     this.setState({ [name]: value });
   };
+
+
 
   render() {
     return (

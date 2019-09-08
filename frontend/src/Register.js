@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import cookie from "js-cookie";
-import Error from "./components/Error";
+import Error from "./routes/Error";
 export default class Register extends Component {
   constructor(props) {
     super(props);

@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../pinpong-authentication-react-front/.idea/pinpong-authentication-react-front.iml" filepath="$PROJECT_DIR$/../pinpong-authentication-react-front/.idea/pinpong-authentication-react-front.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../react-laravel-with-jwt-auth/.idea/react-laravel-with-jwt-auth.iml" filepath="$PROJECT_DIR$/../react-laravel-with-jwt-auth/.idea/react-laravel-with-jwt-auth.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/rolebase.iml" filepath="$PROJECT_DIR$/.idea/rolebase.iml" />
     </modules>
   </component>

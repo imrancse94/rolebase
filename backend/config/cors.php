@@ -11,7 +11,7 @@ return [
     | to accept any value.
     |
     */
-   
+
     'supportsCredentials'    => false,
     'allowedOrigins'         => ['http://localhost:3000'],
     'allowedOriginsPatterns' => [],

@@ -22,6 +22,8 @@ import {
 } from 'reactstrap';
 import { CustomTooltips } from '@coreui/coreui-plugin-chartjs-custom-tooltips';
 import { getStyle, hexToRgba } from '@coreui/coreui/dist/js/coreui-utilities'
+import {connect} from "react-redux";
+
 
 const Widget03 = lazy(() => import('../../views/Widgets/Widget03'));
 
@@ -455,7 +457,7 @@ const mainChartOpts = {
 class Dashboard extends Component {
   constructor(props) {
     super(props);
-
+    this.state = { email: props.email, name: props.name, errors: {} };
     this.toggle = this.toggle.bind(this);
     this.onRadioBtnClick = this.onRadioBtnClick.bind(this);
 
@@ -464,6 +466,9 @@ class Dashboard extends Component {
       radioSelected: 2,
     };
   }
+
+
+
 
   toggle() {
     this.setState({
@@ -1126,4 +1131,12 @@ class Dashboard extends Component {
   }
 }
 
-export default Dashboard;
+
+const mapStateToProps = state => {
+  return {
+    name: state.auth.user.name,
+    email: state.auth.user.email
+  };
+};
+export default connect(mapStateToProps)(Dashboard);
+

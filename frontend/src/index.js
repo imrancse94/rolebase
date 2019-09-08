@@ -5,7 +5,7 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import store from "./store/index";
 import { Provider } from "react-redux";
-import axios from "axios";
+import Http from './Http';
 import cookie from "js-cookie";
 import jwt from "jsonwebtoken";
 import 'react-app-polyfill/ie9'; // For IE 9-11 support
@@ -39,9 +39,9 @@ const render = () => {
   );
 };
 if (token) {
-  axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-  axios.post("http://localhost:8000/api/auth/me").then(res => {
+  Http.post("http://localhost:8000/api/auth/me").then(res => {
     store.dispatch({ type: "SET_LOGIN", payload: res.data });
+    console.log('render');
     render();
   });
 } else {
